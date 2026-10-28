@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive demonstration of stack data structures using arrays and linked lists, plus an undo-text-editor application.">
+  <title>Stack Lab | Data Structures</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">DATA STRUCTURES • C++ + WEB DEMO</span>
+      <h1>Stack <span>Lab</span></h1>
+      <p>Explore Last In, First Out (LIFO) through array stacks, linked-list stacks, and a practical Undo application.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tabs" aria-label="Project sections">
+      <button class="tab active" data-tab="playground">Stack Playground</button>
+      <button class="tab" data-tab="undo">Undo Editor</button>
+      <button class="tab" data-tab="about">How It Works</button>
+    </nav>
+
+    <section id="playground" class="panel active">
+      <div class="section-heading">
+        <div><span class="eyebrow">01 / IMPLEMENTATION</span><h2>Stack Playground</h2></div>
+        <span class="pill">LIFO: Last In, First Out</span>
+      </div>
+      <div class="mode-switch" role="group" aria-label="Stack implementation">
+        <button class="mode active" data-mode="array">Array implementation</button>
+        <button class="mode" data-mode="linked">Linked-list implementation</button>
+      </div>
+      <div class="workspace">
+        <div class="control-card">
+          <label for="stackValue">Value to push</label>
+          <div class="input-row">
+            <input id="stackValue" type="number" placeholder="e.g. 25" value="10">
+            <button id="pushBtn" class="btn primary">Push</button>
+          </div>
+          <div class="button-grid">
+            <button id="popBtn" class="btn">Pop</button>
+            <button id="peekBtn" class="btn">Peek</button>
+            <button id="clearBtn" class="btn danger">Clear stack</button>
+          </div>
+          <p id="status" class="status" aria-live="polite">Ready. Push a value to begin.</p>
+          <div class="stats">
+            <div><span class="stat-label">Elements</span><strong id="count">0</strong></div>
+            <div><span class="stat-label">Top value</span><strong id="topValue">—</strong></div>
+            <div><span class="stat-label">Capacity</span><strong id="capacity">5</strong></div>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="visual-header"><h3>Stack visualisation</h3><span id="modeLabel" class="pill">Array</span></div>
+          <p class="hint">TOP points to the most recently added value.</p>
+          <div id="stackVisual" class="stack-visual">
+            <div class="empty-state">Your stack is empty.<br><span>Push a value to add the first item.</span></div>
+          </div>
+          <div class="index-note" id="indexNote">Array indexes are shown beside each item.</div>
+        </div>
+      </div>
+      <div class="concept-strip">
+        <div><strong>Push</strong><span>Adds an item to the top.</span></div>
+        <div><strong>Pop</strong><span>Removes the top item.</span></div>
+        <div><strong>Peek</strong><span>Reads the top without removing it.</span></div>
+        <div><strong>Overflow</strong><span>Array stack is limited to 5 items.</span></div>
+      </div>
+    </section>
+
+    <section id="undo" class="panel">
+      <div class="section-heading">
+        <div><span class="eyebrow">02 / APPLICATION</span><h2>Undo Text Editor</h2></div>
+        <span class="pill">Real-world stack use</span>
+      </div>
+      <p class="intro">Every time you apply a change, the previous text is saved on a stack. Undo restores the most recent saved state first.</p>
+      <div class="editor-card">
+        <label for="editorText">Write or edit some text</label>
+        <textarea id="editorText" rows="7" placeholder="Start typing here...">Hello</textarea>
+        <div class="editor-actions">
+          <button id="saveChangeBtn" class="btn primary">Save change</button>
+          <button id="undoBtn" class="btn">Undo last change</button>
+          <button id="resetEditorBtn" class="btn danger">Reset editor</button>
+        </div>
+        <p id="undoStatus" class="status" aria-live="polite">Initial text loaded. Make a change, then save it to create an undo point.</p>
+        <div class="history-box"><div class="visual-header"><h3>Undo history stack</h3><span id="historyCount" class="pill">0 saved states</span></div><ol id="historyList"><li class="history-empty">No saved states yet.</li></ol></div>
+      </div>
+    </section>
+
+    <section id="about" class="panel">
+      <div class="section-heading"><div><span class="eyebrow">03 / CONCEPTS</span><h2>How It Works</h2></div></div>
+      <div class="explain-grid">
+        <article class="explain-card"><span class="number">01</span><h3>Array-based stack</h3><p>Stores values in consecutive array positions. A variable called <code>top</code> tracks the last occupied index. This demo uses a fixed capacity of five.</p><p class="complexity">Push: O(1) • Pop: O(1)</p></article>
+        <article class="explain-card"><span class="number">02</span><h3>Linked-list stack</h3><p>Each node stores a value and a pointer to the next node. The <code>top</code> pointer refers to the newest node, so insertion and removal happen at the head.</p><p class="complexity">Push: O(1) • Pop: O(1)</p></article>
+        <article class="explain-card"><span class="number">03</span><h3>Stack application</h3><p>An Undo feature stores previous editor states. The most recent state is restored first, which follows the LIFO principle.</p><p class="complexity">Undo: O(1) per saved state (excluding text-copy cost)</p></article>
+      </div>
+      <div class="note-card"><strong>Assignment files included</strong><p>The ZIP contains separate C++ source files for the array stack, linked-list stack, and Undo application, alongside this deployable web demonstration.</p></div>
+    </section>
+
+    <footer><span>Stack Lab</span><span>Educational demonstration • C++ source included</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
